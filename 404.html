@@ -1,0 +1,145 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<meta name="keywords" content="ZZH,暗网,黑客技术,数据泄露,ZZHacker,ddosi,QQ1123303507,hack,渗透测试,QQ1123303507,www.ddosi.com,黑客,ddosi.com,黑客极客,信息安全,hacker,569743,2359795780,个人隐私保护 ,入侵,渗透,极客,骇客,Tor,onion,洋葱浏览器,deepweb,服务器,webshell,提权,渗透测试,端口,anonymous,匿名者,hack ,网站漏洞,404页面-ZZH|暗网|黑客|数据泄露|隐私保护|信息安全|渗透测试"> -->
+    <meta name="keywords" content="ZZH 404">
+
+    <title>ZZH404</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+
+<script>
+    var canvas = document.createElement('canvas');
+    var height = canvas.height = window.innerHeight;
+    var width = canvas.width = window.innerWidth;
+    var ctx = canvas.getContext('2d');
+    document.body.appendChild(canvas);
+
+    function random(min, max) {
+        return Math.random() * (max - min + 1) + min;
+    }
+
+    function range_map(value, in_min, in_max, out_min, out_max) {
+        return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+    }
+
+    var word_arr = [];
+    var txt_min_size = 5;
+    var txt_max_size = 25;
+    var keypress = false;
+    var acclerate = 2;
+    for (var i = 0; i < 25; i++) {
+        word_arr.push({
+            x: random(0, width),
+            y: random(0, height),
+            text: 'who am i',
+            size: random(txt_min_size, txt_max_size)
+        });
+
+        word_arr.push({
+            x: random(0, width),
+            y: random(0, height),
+            text: 'sudo su -',
+            size: random(txt_min_size, txt_max_size)
+        });
+
+        word_arr.push({
+            x: random(0, width),
+            y: random(0, height),
+            text: 'kill -9',
+            size: random(txt_min_size, txt_max_size)
+        });
+
+
+//         word_arr.push({
+//             x: random(0, width),
+//             y: random(0, height),
+//             text: '404页面未找到',
+//             size: random(txt_min_size, txt_max_size)
+//         });
+
+        word_arr.push({
+            x: random(0, width),
+            y: random(0, height),
+            text: 'ZZHacker',
+            size: random(txt_min_size, txt_max_size)
+        });
+
+
+        word_arr.push({
+            x: random(0, width),
+            y: random(0, height),
+            text: 'www.404.com',
+            size: random(txt_min_size, txt_max_size)
+        });
+
+//         word_arr.push({
+//             x: random(0, width),
+//             y: random(0, height),
+//             text: 'Hello World',
+//             size: Math.floor(random(txt_min_size, txt_max_size))
+//         });
+
+        word_arr.push({
+            x: random(0, width),
+            y: random(0, height),
+            text: 'rm -rf /*',
+            size: random(txt_min_size, txt_max_size)
+        });
+    }
+
+    function render() {
+        ctx.fillStyle = "rgba(0,0,0,1)";
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.fillStyle = "#7fff00";
+        for (var i = 0; i < word_arr.length; i++) {
+            ctx.font = word_arr[i].size + "px sans-serif";
+            var w = ctx.measureText(word_arr[i].text);
+            ctx.fillText(word_arr[i].text, word_arr[i].x, word_arr[i].y);
+
+            if (keypress) {
+                word_arr[i].x += range_map(word_arr[i].size, txt_min_size, txt_max_size, 2, 4) * acclerate;
+            }
+            else {
+                word_arr[i].x += range_map(word_arr[i].size, txt_min_size, txt_max_size, 2, 3);
+            }
+
+            if (word_arr[i].x >= width) {
+                word_arr[i].x = -w.width * 2;
+                word_arr[i].y = random(0, height);
+                word_arr[i].size = Math.floor(random(txt_min_size, txt_max_size));
+
+            }
+        }
+
+        ctx.fill();
+
+        requestAnimationFrame(render);
+    }
+
+    render();
+
+    window.addEventListener('keydown', function () {
+        keypress = true;
+    }, true);
+    window.addEventListener('keyup', function () {
+        keypress = false;
+    }, true);
+</script><canvas height="655" width="1280"></canvas>
+
+
+</body></html>
